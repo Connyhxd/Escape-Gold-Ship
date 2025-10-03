@@ -1,8 +1,9 @@
-using UnityEngine;
-using Unity.AI.Navigation;
-using UnityEngine.AI;
 using System.Collections;
+using Unity.AI.Navigation;
 using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.AI;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class GoldShipAI : MonoBehaviour
 {
@@ -25,6 +26,8 @@ public class GoldShipAI : MonoBehaviour
     private float elapsedIdleTime;
 
     private bool playerInRange;
+    private bool playerVisible;
+    [SerializeField] private LayerMask vision;
 
     public Vector2 minMaxSearchTime;
     private float searchTime;
@@ -42,6 +45,7 @@ public class GoldShipAI : MonoBehaviour
     {
         idleTime = Random.Range(minMaxIdleTime.x, minMaxIdleTime.y);
         searchTime = Random.Range(minMaxSearchTime.x, minMaxSearchTime.y);
+
     }
 
     private void Update()
@@ -66,7 +70,10 @@ public class GoldShipAI : MonoBehaviour
                 break;
 
             case ENEMY_STATE.Chasing:
-                agent.SetDestination(player.position);
+                if (playerVisible)
+                    agent.SetDestination(player.position);
+                else
+                    ChangeEnemyState(ENEMY_STATE.Searching);
                 break;
 
             case ENEMY_STATE.Searching:
@@ -94,29 +101,17 @@ public class GoldShipAI : MonoBehaviour
 
         float angleVision = Vector3.Angle(transform.forward, direction);
 
-        if (angleVision < 60f)
+        if (angleVision < 60f && Physics.Raycast(origin, direction, out hit, 6f, vision))
         {
-            Debug.DrawRay(origin, direction * 15f, Color.magenta);//borrar
-
-            if (Physics.Raycast(origin, direction, out hit, 15f))
+            if (hit.transform.CompareTag("Player"))
             {
-                if (hit.transform == player)
-                {
-                    ChangeEnemyState(ENEMY_STATE.Chasing);
-                }
-                else
-                {
-                    ChangeEnemyState(ENEMY_STATE.Searching);
-                }
+                playerVisible = true;
+                ChangeEnemyState(ENEMY_STATE.Chasing);
             }
             else
             {
-                ChangeEnemyState(ENEMY_STATE.Idle);
+                playerVisible = false;
             }
-        }
-        else
-        {
-            ChangeEnemyState(ENEMY_STATE.Walking);
         }
     }
 
@@ -166,6 +161,7 @@ public class GoldShipAI : MonoBehaviour
         if(other.CompareTag("PlayerRange"))
         {
             playerInRange = true;
+            playerVisible = true;
             ChangeEnemyState(ENEMY_STATE.Chasing);
         }
     }
@@ -174,6 +170,7 @@ public class GoldShipAI : MonoBehaviour
     {
         if(other.CompareTag("PlayerRange"))
         {
+            playerVisible = false;
             playerInRange = false;
         }
 
@@ -184,3 +181,4 @@ public class GoldShipAI : MonoBehaviour
     }
 
 }
+
