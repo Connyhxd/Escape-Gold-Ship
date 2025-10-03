@@ -14,7 +14,7 @@ public class Door : MonoBehaviour
     public TMP_Text doorMessage;
     private float messageTimer = 0f;
 
-    private bool playerNearby = false;
+    [SerializeField] private bool playerNearby = false;
 
     public NavMeshSurface navSurface;
 
