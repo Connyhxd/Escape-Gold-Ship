@@ -2,6 +2,7 @@ using UnityEngine;
 using Unity.AI.Navigation;
 using UnityEngine.AI;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class GoldShipAI : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class GoldShipAI : MonoBehaviour
     private float idleTime;
     private float elapsedIdleTime;
 
-    private bool onPlayerRange;
+    private bool playerInRange;
 
     public Vector2 minMaxSearchTime;
     private float searchTime;
@@ -45,12 +46,12 @@ public class GoldShipAI : MonoBehaviour
 
     private void Update()
     {
- 
-        switch(currentState)
+
+        switch (currentState)
         {
             case ENEMY_STATE.Idle:
                 elapsedIdleTime += Time.deltaTime;
-                if(elapsedIdleTime >= idleTime)
+                if (elapsedIdleTime >= idleTime)
                 {
                     elapsedIdleTime = 0;
                     ChangeEnemyState(ENEMY_STATE.Walking);
@@ -58,7 +59,7 @@ public class GoldShipAI : MonoBehaviour
                 break;
 
             case ENEMY_STATE.Walking:
-                if(agent.remainingDistance <= agent.stoppingDistance)
+                if (agent.remainingDistance <= agent.stoppingDistance)
                 {
                     ChangeEnemyState(ENEMY_STATE.Idle);
                 }
@@ -70,10 +71,10 @@ public class GoldShipAI : MonoBehaviour
 
             case ENEMY_STATE.Searching:
                 elapsedSearchTime += Time.deltaTime;
-                if(elapsedSearchTime >= searchTime)
+                if (elapsedSearchTime >= searchTime)
                 {
                     elapsedSearchTime = 0;
-                    if(onPlayerRange)
+                    if (playerInRange)
                     {
                         ChangeEnemyState(ENEMY_STATE.Chasing);
                     }
@@ -84,8 +85,40 @@ public class GoldShipAI : MonoBehaviour
                 }
                 break;
         }
-    }
 
+        RaycastHit hit;
+
+        Vector3 origin = transform.position + Vector3.up * 1.5f;
+
+        Vector3 direction = (player.position - origin).normalized;
+
+        float angleVision = Vector3.Angle(transform.forward, direction);
+
+        if (angleVision < 60f)
+        {
+            Debug.DrawRay(origin, direction * 15f, Color.magenta);//borrar
+
+            if (Physics.Raycast(origin, direction, out hit, 15f))
+            {
+                if (hit.transform == player)
+                {
+                    ChangeEnemyState(ENEMY_STATE.Chasing);
+                }
+                else
+                {
+                    ChangeEnemyState(ENEMY_STATE.Searching);
+                }
+            }
+            else
+            {
+                ChangeEnemyState(ENEMY_STATE.Idle);
+            }
+        }
+        else
+        {
+            ChangeEnemyState(ENEMY_STATE.Walking);
+        }
+    }
 
     private void ChangeEnemyState(ENEMY_STATE newState)
     {
@@ -130,18 +163,18 @@ public class GoldShipAI : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if(other.CompareTag("PlayerRange"))
         {
-            onPlayerRange = true;
+            playerInRange = true;
             ChangeEnemyState(ENEMY_STATE.Chasing);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if(other.CompareTag("PlayerRange"))
         {
-            onPlayerRange = false;
+            playerInRange = false;
         }
 
         if(currentState == ENEMY_STATE.Chasing)

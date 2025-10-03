@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Hands
+  - PlayerRange
   layers:
   - Default
   - TransparentFX
