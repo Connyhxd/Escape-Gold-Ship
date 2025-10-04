@@ -1,7 +1,8 @@
-using UnityEngine;
+using System.Collections.Generic;
 using TMPro;
-using UnityEngine.AI;
 using Unity.AI.Navigation;
+using UnityEngine;
+using UnityEngine.AI;
 
 public class Door : MonoBehaviour
 {
@@ -17,6 +18,9 @@ public class Door : MonoBehaviour
     [SerializeField] private bool playerNearby = false;
 
     public NavMeshSurface navSurface;
+
+    public GoldShipAI enemyAI;
+    public Transform[] newPatrolPoints;
 
     private void Update()
     {
@@ -66,6 +70,9 @@ public class Door : MonoBehaviour
 
                     navSurface.BuildNavMesh();
 
+                    AddNewPatrolPoints();
+
+
                     return;
                 }
                 else
@@ -75,6 +82,14 @@ public class Door : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void AddNewPatrolPoints()
+    {
+        if (enemyAI.patrolPoints == null)
+            enemyAI.patrolPoints = new List<Transform>();
+
+        enemyAI.patrolPoints.AddRange(newPatrolPoints);
     }
 
     public void ShowDoorMessage()

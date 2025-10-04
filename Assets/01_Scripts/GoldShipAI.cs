@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Unity.AI.Navigation;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -10,7 +11,7 @@ public class GoldShipAI : MonoBehaviour
     [SerializeField] private NavMeshAgent agent;
     public NavMeshSurface surface;
     public Transform player;
-    public Transform[] patrolPoints;
+    public List<Transform> patrolPoints = new List<Transform>();
 
     public enum ENEMY_STATE
     {
@@ -137,7 +138,7 @@ public class GoldShipAI : MonoBehaviour
                 golshiAnim.SetBool("Chasing", false);
                 golshiAnim.SetBool("Searching", false);
                 golshiAnim.SetBool("Idle", false);
-                agent.SetDestination(patrolPoints[Random.Range(0, patrolPoints.Length)].position);
+                agent.SetDestination(patrolPoints[Random.Range(0, patrolPoints.Count)].position);
                 break;
 
             case ENEMY_STATE.Chasing:
@@ -153,6 +154,17 @@ public class GoldShipAI : MonoBehaviour
                 golshiAnim.SetBool("Walking", false);
                 golshiAnim.SetBool("Idle", false);
                 break;
+        }
+    }
+
+    public void AddPatrolPoints(Transform[] newPoints)
+    {
+        for (int i = 0; i < newPoints.Length; i++)
+        {
+            if (!patrolPoints.Contains(newPoints[i]))
+            {
+                patrolPoints.Add(newPoints[i]);
+            }
         }
     }
 
