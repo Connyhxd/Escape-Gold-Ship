@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fd97407b41ee864c8527be25d2d222d, type: 3}
-  m_Name: Heal Item
+  m_Name: Energy item
   m_EditorClassIdentifier: 
-  itemName: Energy Drink
+  itemName: Energy Spray
   itemDesc: Idk
-  itemSprite: {fileID: 0}
+  itemSprite: {fileID: 21300000, guid: 4c220dd2684727542b9614109d096adb, type: 3}

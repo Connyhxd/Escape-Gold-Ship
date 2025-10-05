@@ -14,11 +14,13 @@ public class Keypad : MonoBehaviour
     public Animator doorAgain;
 
     private float wrongEndTime = -1f;
-    private float rightEndTime = -1f;
 
     public bool rightAnswer = false;
 
     public openKeypad kp;
+
+    public GameObject falseKey;
+    public GameObject realKey;
 
     private void Update()
     {
@@ -30,22 +32,17 @@ public class Keypad : MonoBehaviour
             wrongEndTime = -1f;
         }
 
-        if (rightEndTime > 0 && Time.unscaledTime >= rightEndTime)
-        {
-            keypad.SetActive(false);
-        }
-
         if (rightAnswer)
         {
-            text.color = Color.green;
             doorAgain.SetTrigger("Opening");
             locker.SetActive(false);
             kp.openText.SetActive(false);
-            rightEndTime = Time.unscaledTime + 2f;
 
             Time.timeScale = 1f;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+            falseKey.SetActive(false);
+            realKey.SetActive(true);
         }
 
         if(keypad.activeInHierarchy)

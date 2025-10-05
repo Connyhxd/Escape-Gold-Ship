@@ -7,6 +7,7 @@ TagManager:
   - Hands
   - PlayerRange
   - Locker
+  - Enemy
   layers:
   - Default
   - TransparentFX

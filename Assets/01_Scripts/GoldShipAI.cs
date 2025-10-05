@@ -18,7 +18,9 @@ public class GoldShipAI : MonoBehaviour
         Idle,
         Walking,
         Chasing,
-        Searching
+        Searching,
+        Stunned,
+        Attack
     }
     [SerializeField] private ENEMY_STATE currentState;
 
@@ -33,6 +35,9 @@ public class GoldShipAI : MonoBehaviour
     public Vector2 minMaxSearchTime;
     private float searchTime;
     private float elapsedSearchTime;
+
+    private float stunnedTime = 5f;
+    private float elapsedStunnedTime;
 
     [SerializeField] private Animator golshiAnim;
 
@@ -92,7 +97,26 @@ public class GoldShipAI : MonoBehaviour
                     }
                 }
                 break;
+            case ENEMY_STATE.Stunned:
+                elapsedStunnedTime += Time.deltaTime;
+                if (elapsedStunnedTime >= stunnedTime)
+                {
+                    elapsedStunnedTime = 0;
+                    agent.isStopped = false;
+
+                    if (playerInRange)
+                    {
+                        ChangeEnemyState(ENEMY_STATE.Chasing);
+                    }
+                    else
+                    {
+                        ChangeEnemyState(ENEMY_STATE.Idle);
+                    }
+                }
+                break;
         }
+
+        if (currentState == ENEMY_STATE.Stunned) return;
 
         RaycastHit hit;
 
@@ -116,7 +140,7 @@ public class GoldShipAI : MonoBehaviour
         }
     }
 
-    private void ChangeEnemyState(ENEMY_STATE newState)
+    public void ChangeEnemyState(ENEMY_STATE newState)
     {
         golshiAnim.SetBool("Idle", false);
         golshiAnim.SetBool("Walking", false);
@@ -131,6 +155,7 @@ public class GoldShipAI : MonoBehaviour
                 golshiAnim.SetBool("Chasing", false);
                 golshiAnim.SetBool("Walking", false);
                 golshiAnim.SetBool("Searching", false);
+                golshiAnim.SetBool("Pain", false);
                 break;
 
             case ENEMY_STATE.Walking:
@@ -138,6 +163,7 @@ public class GoldShipAI : MonoBehaviour
                 golshiAnim.SetBool("Chasing", false);
                 golshiAnim.SetBool("Searching", false);
                 golshiAnim.SetBool("Idle", false);
+                golshiAnim.SetBool("Pain", false);
                 agent.SetDestination(patrolPoints[Random.Range(0, patrolPoints.Count)].position);
                 break;
 
@@ -146,6 +172,7 @@ public class GoldShipAI : MonoBehaviour
                 golshiAnim.SetBool("Searching", false);
                 golshiAnim.SetBool("Walking", false);
                 golshiAnim.SetBool("Idle", false);
+                golshiAnim.SetBool("Pain", false);
                 break;
 
             case ENEMY_STATE.Searching:
@@ -153,7 +180,18 @@ public class GoldShipAI : MonoBehaviour
                 golshiAnim.SetBool("Chasing", false);
                 golshiAnim.SetBool("Walking", false);
                 golshiAnim.SetBool("Idle", false);
+                golshiAnim.SetBool("Pain", false);
                 break;
+            case ENEMY_STATE.Stunned:
+                golshiAnim.SetBool("Pain", true);
+                golshiAnim.SetBool("Searching", false);
+                golshiAnim.SetBool("Chasing", false);
+                golshiAnim.SetBool("Walking", false);
+                golshiAnim.SetBool("Idle", false);
+
+                agent.isStopped = true;
+                break;
+
         }
     }
 
