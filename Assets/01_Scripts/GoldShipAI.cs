@@ -194,7 +194,7 @@ public class GoldShipAI : MonoBehaviour
                 agent.isStopped = true;
                 break;
             case ENEMY_STATE.Attack:
-
+                //t envia a la escena d muerte
                 break;
 
         }
