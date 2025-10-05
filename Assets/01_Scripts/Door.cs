@@ -27,8 +27,10 @@ public class Door : MonoBehaviour
         if(messageTimer > 0f)
         {
             messageTimer -= Time.deltaTime;
-            if(messageTimer <= 0f)
+            if (messageTimer <= 0f)
+            {
                 doorMessage.gameObject.SetActive(false);
+            }
         }
 
         if (playerNearby && !doorOpened && Input.GetKeyDown(KeyCode.E))
