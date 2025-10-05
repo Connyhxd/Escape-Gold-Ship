@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1943443559096553751}
-  - component: {fileID: 2335941688759996671}
   - component: {fileID: 4020947268906322427}
   - component: {fileID: -8268304634787145366}
+  - component: {fileID: 8737368536647695409}
   m_Layer: 0
-  m_Name: Gem_Red
+  m_Name: Gem_Redbullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,26 +28,13 @@ Transform:
   m_GameObject: {fileID: 3727548443414187770}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -26.959866, y: 0.8, z: 6.115475}
+  m_LocalPosition: {x: -25.881338, y: 3.92, z: -78.65369}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4360859789937718870}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2335941688759996671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3727548443414187770}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e8a7dacffcbffa45b840041a9b0a3e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemsTemplate: {fileID: 11400000, guid: d796dc2e45c542d449aac895537db3dd, type: 2}
 --- !u!65 &4020947268906322427
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -96,6 +83,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8737368536647695409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3727548443414187770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13903c4c0efd68c4299e984b86fded15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyAI: {fileID: 0}
 --- !u!1 &4021488463314808044
 GameObject:
   m_ObjectHideFlags: 0

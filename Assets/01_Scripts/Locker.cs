@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Locker : MonoBehaviour
 {
-    private bool doorOpened = false;
+    public bool doorOpened = false;
 
     public Animator lockerAnim;
 

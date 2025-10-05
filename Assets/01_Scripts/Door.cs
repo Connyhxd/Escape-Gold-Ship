@@ -8,7 +8,7 @@ public class Door : MonoBehaviour
 {
     public string keyName = "Key";
     public Inventory playerInventory;
-    private bool doorOpened = false;
+    public bool doorOpened = false;
 
     public Animator doorAnim;
 

@@ -22,6 +22,8 @@ public class Keypad : MonoBehaviour
     public GameObject falseKey;
     public GameObject realKey;
 
+    public bool doorOpened = false;
+
     private void Update()
     {
 
@@ -37,6 +39,7 @@ public class Keypad : MonoBehaviour
             doorAgain.SetTrigger("Opening");
             locker.SetActive(false);
             kp.openText.SetActive(false);
+            doorOpened = true;
 
             Time.timeScale = 1f;
             Cursor.visible = false;

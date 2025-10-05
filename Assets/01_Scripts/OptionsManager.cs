@@ -9,6 +9,12 @@ public class OptionsManager : MonoBehaviour
     public Slider mouseSlider;
     public PlayerMovement playerMove;
 
+    public GoldShipAI enemy;
+    public Inventory playerInventory;
+    public Door[] doors;
+    public Locker[] lockers;
+    public Keypad[] kP;
+    public Item[] pickedItems;
 
     private void Update()
     {
@@ -43,4 +49,12 @@ public class OptionsManager : MonoBehaviour
         playerMove.mouseSensivity = newSens;
     }
 
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
+   
+    
 }
+
