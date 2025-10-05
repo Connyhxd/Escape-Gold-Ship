@@ -39,6 +39,8 @@ public class GoldShipAI : MonoBehaviour
     private float stunnedTime = 5f;
     private float elapsedStunnedTime;
 
+    private float canKill;
+
     [SerializeField] private Animator golshiAnim;
 
     private void Awake()
@@ -191,6 +193,9 @@ public class GoldShipAI : MonoBehaviour
 
                 agent.isStopped = true;
                 break;
+            case ENEMY_STATE.Attack:
+
+                break;
 
         }
     }
@@ -213,6 +218,14 @@ public class GoldShipAI : MonoBehaviour
             playerInRange = true;
             playerVisible = true;
             ChangeEnemyState(ENEMY_STATE.Chasing);
+        }
+
+        if (other.CompareTag("Player"))
+        {
+            if (other.CompareTag("Player") && currentState != ENEMY_STATE.Stunned && currentState != ENEMY_STATE.Searching)
+            {
+                ChangeEnemyState(ENEMY_STATE.Attack);
+            }
         }
     }
 
