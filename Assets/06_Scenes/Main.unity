@@ -938,7 +938,7 @@ RectTransform:
   m_Father: {fileID: 1820653456}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: -2.4, y: -7.7}
   m_SizeDelta: {x: 34.0235, y: 15.6977}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -29743,7 +29743,7 @@ RectTransform:
   m_Father: {fileID: 1488961737}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: -2.4, y: -7.7}
   m_SizeDelta: {x: 34.0235, y: 15.6977}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -37304,7 +37304,7 @@ RectTransform:
   m_Father: {fileID: 1105497151}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -40400,7 +40400,7 @@ RectTransform:
   m_Father: {fileID: 1973529419}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: -2.4000092, y: -7.700001}
   m_SizeDelta: {x: 34.0235, y: 15.6977}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -46366,7 +46366,7 @@ RectTransform:
   m_Father: {fileID: 1004864423}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -53323,7 +53323,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1072408999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56716,7 +56716,7 @@ RectTransform:
   m_Father: {fileID: 45215905}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -65149,6 +65149,8 @@ MonoBehaviour:
   grab: {fileID: 8300000, guid: ae1ed9f08b1609849a8addc26e88e2b0, type: 3}
   bg: {fileID: 8300000, guid: f4b883527c10440b5980b44b4c3e128b, type: 3}
   chase: {fileID: 8300000, guid: 855181f62592a4f34a0cbcbe267d1433, type: 3}
+  die: {fileID: 8300000, guid: ff09c6858e636407286ab113506e8feb, type: 3}
+  end: {fileID: 8300000, guid: 52b92adb349c64adf943fdf2d4f43d39, type: 3}
 --- !u!4 &1350045993 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3557367404696723680, guid: 735ccd246f09d44498ac108fd3dd16cf, type: 3}

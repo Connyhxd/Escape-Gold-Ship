@@ -21,6 +21,9 @@ public class Dialogues : MonoBehaviour
 
     void Update()
     {
+
+        Cursor.lockState = CursorLockMode.Locked;
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (text.text == lines[index])

@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class MainMenuManager : MonoBehaviour
 {
 
-    public void Start()
+    public void Update()
     {
         Cursor.lockState = CursorLockMode.None;
     }

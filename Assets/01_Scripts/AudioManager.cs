@@ -22,6 +22,8 @@ public class AudioManager : MonoBehaviour
 
     public AudioClip bg;
     public AudioClip chase;
+    public AudioClip die;
+    public AudioClip end;
 
     private void Start()
     {
@@ -33,5 +35,18 @@ public class AudioManager : MonoBehaviour
     {
         sfx.PlayOneShot(clip);
     }
+    public void PlayChaseMusic()
+    {
+        music.clip = chase;
+        music.loop = true;
+        music.Play();
+    }
 
+    public void PlayNormalMusic()
+    {
+        music.clip = bg;
+        music.loop = true;
+        music.Play();
+    }
 }
+

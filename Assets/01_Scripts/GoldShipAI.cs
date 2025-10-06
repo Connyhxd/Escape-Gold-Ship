@@ -42,12 +42,16 @@ public class GoldShipAI : MonoBehaviour
 
     private float canKill;
 
+    private AudioManager audioManager;
+
+
     [SerializeField] private Animator golshiAnim;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         golshiAnim = GetComponent<Animator>();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     private void Start()
@@ -150,7 +154,17 @@ public class GoldShipAI : MonoBehaviour
         golshiAnim.SetBool("Chasing", false);
         golshiAnim.SetBool("Searching", false);
 
+        if (newState == ENEMY_STATE.Chasing)
+        {
+            audioManager.PlayChaseMusic();
+        }
+        else if (currentState == ENEMY_STATE.Chasing && newState != ENEMY_STATE.Chasing)
+        {
+            audioManager.PlayNormalMusic();
+        }
+
         currentState = newState;
+
         switch(currentState)
         {
             case ENEMY_STATE.Idle:
