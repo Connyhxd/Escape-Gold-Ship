@@ -45193,7 +45193,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: General Volume
+  m_text: Music Volume
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -53323,7 +53323,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1072408999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65145,6 +65145,8 @@ MonoBehaviour:
   locker: {fileID: 8300000, guid: 51e976d93ee459344b951c467f2bd3b6, type: 3}
   click: {fileID: 8300000, guid: db5c2f3a5c99f004c822aa54a006967e, type: 3}
   locked: {fileID: 8300000, guid: eccff49bf8ea78b468ae2b15b01ccb65, type: 3}
+  lose: {fileID: 8300000, guid: f9f4ed448901a094fa2242c9d2ee30be, type: 3}
+  grab: {fileID: 8300000, guid: ae1ed9f08b1609849a8addc26e88e2b0, type: 3}
   bg: {fileID: 8300000, guid: f4b883527c10440b5980b44b4c3e128b, type: 3}
   chase: {fileID: 8300000, guid: 855181f62592a4f34a0cbcbe267d1433, type: 3}
 --- !u!4 &1350045993 stripped
@@ -100836,8 +100838,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 1816175404}
   - {fileID: 1349026281}
-  - {fileID: 370430644}
   - {fileID: 89977458}
+  - {fileID: 370430644}
   - {fileID: 1256527250}
   - {fileID: 410087041}
   - {fileID: 832575519}

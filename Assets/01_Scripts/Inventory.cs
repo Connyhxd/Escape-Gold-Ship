@@ -17,10 +17,14 @@ public class Inventory : MonoBehaviour
     public TMP_Text fullInv;
     private float messageTimer = 0f;
 
+    private AudioManager audioManager;
+
+
     private void Awake()
     {
         items = new ItemTemplate[3];
         UIUpdate();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
     private void Update()
     {
@@ -40,6 +44,7 @@ public class Inventory : MonoBehaviour
             {
                 if (items[i] == null)
                 {
+                    audioManager.PlaySFX(audioManager.grab);
                     items[i] = nearbyItem.itemsTemplate;
                     Destroy(nearbyItem.gameObject);
                     nearbyItem = null;
@@ -54,9 +59,21 @@ public class Inventory : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1)) SelectItem(0);
-        if (Input.GetKeyDown(KeyCode.Alpha2)) SelectItem(1);
-        if (Input.GetKeyDown(KeyCode.Alpha3)) SelectItem(2);
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            audioManager.PlaySFX(audioManager.click);
+            SelectItem(0);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            audioManager.PlaySFX(audioManager.click);
+            SelectItem(1);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            audioManager.PlaySFX(audioManager.click);
+            SelectItem(2);
+        }
 
     }
 

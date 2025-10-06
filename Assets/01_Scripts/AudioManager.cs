@@ -17,6 +17,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip locker;
     public AudioClip click;
     public AudioClip locked;
+    public AudioClip lose;
+    public AudioClip grab;
 
     public AudioClip bg;
     public AudioClip chase;
