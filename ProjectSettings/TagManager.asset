@@ -9,6 +9,7 @@ TagManager:
   - Locker
   - Enemy
   - IceCube
+  - Audio
   layers:
   - Default
   - TransparentFX

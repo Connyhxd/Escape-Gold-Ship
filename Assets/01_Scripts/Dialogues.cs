@@ -12,6 +12,7 @@ public class Dialogues : MonoBehaviour
 
     private int index;
 
+    public string currentScene;
     private void Start()
     {
         text.text = string.Empty;
@@ -56,9 +57,17 @@ public class Dialogues : MonoBehaviour
             text.text = string.Empty;
             StartCoroutine(TypeLine());
         }
-        else
+        else if(currentScene == "Intro")
         {
             SceneManager.LoadScene("Main");
+        }
+        else if (currentScene == "BadEnd")
+        {
+            SceneManager.LoadScene("Menu_de_inicio");
+        }
+        else if (currentScene == "GoodEnd")
+        {
+            SceneManager.LoadScene("Menu_de_inicio");
         }
     }
 }

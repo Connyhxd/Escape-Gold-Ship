@@ -4,6 +4,7 @@ using Unity.AI.Navigation;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class GoldShipAI : MonoBehaviour
@@ -194,7 +195,7 @@ public class GoldShipAI : MonoBehaviour
                 agent.isStopped = true;
                 break;
             case ENEMY_STATE.Attack:
-                //t envia a la escena d muerte
+                SceneManager.LoadScene("Escena Muerte");
                 break;
 
         }

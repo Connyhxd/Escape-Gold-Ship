@@ -22,6 +22,15 @@ public class Door : MonoBehaviour
     public GoldShipAI enemyAI;
     public Transform[] newPatrolPoints;
 
+    private AudioManager audioManager;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
+
+
     private void Update()
     {
         if(messageTimer > 0f)
@@ -70,6 +79,8 @@ public class Door : MonoBehaviour
                     playerInventory.items[i] = null;
                     playerInventory.UIUpdate();
 
+                    audioManager.PlaySFX(audioManager.openDoor);
+
                     navSurface.BuildNavMesh();
 
                     AddNewPatrolPoints();
@@ -82,6 +93,10 @@ public class Door : MonoBehaviour
                     ShowDoorMessage();
                     return;
                 }
+            }
+            else
+            {
+                audioManager.PlaySFX(audioManager.locked);
             }
         }
     }
@@ -96,6 +111,7 @@ public class Door : MonoBehaviour
 
     public void ShowDoorMessage()
     {
+        audioManager.PlaySFX(audioManager.locked);
         doorMessage.gameObject.SetActive(true);
         messageTimer = 2f;
     }

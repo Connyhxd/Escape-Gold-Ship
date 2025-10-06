@@ -16,6 +16,13 @@ public class ItemManager : MonoBehaviour
 
     private float messageTimer = 2f;
 
+    private AudioManager audioManager;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
     void Update()
     {
         if (messageTimer > 0f)
@@ -36,6 +43,8 @@ public class ItemManager : MonoBehaviour
                     playerInventory.items[i] = null;
                     playerInventory.UIUpdate();
 
+                    audioManager.PlaySFX(audioManager.spray);
+
                     player.stamina += 2;
                     return;
                 }
@@ -47,6 +56,8 @@ public class ItemManager : MonoBehaviour
                 {
                     playerInventory.items[i] = null;
                     playerInventory.UIUpdate();
+
+                    audioManager.PlaySFX(audioManager.throwObj);
 
                     Rigidbody bulletRb = Instantiate(bullet, bulletSpawn.position, Quaternion.identity).GetComponent<Rigidbody>();
                     bulletRb.linearVelocity = bulletSpawn.forward * bulletSpeed;
@@ -61,6 +72,7 @@ public class ItemManager : MonoBehaviour
                 {
                     if (iceNearby)
                     {
+                        audioManager.PlaySFX(audioManager.lighter);
                         SceneManager.LoadScene("BadEnd");
                     }
                     else

@@ -905,6 +905,7 @@ MonoBehaviour:
   - And now, I have to escape this place to survive.
   - With Gold Ship looking for me.
   textSpeed: 0.1
+  currentScene: Intro
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -3,10 +3,15 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
-    
+
+    public void Start()
+    {
+        Cursor.lockState = CursorLockMode.None;
+    }
+
     public void PlayGame()
     {
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("Intro");
     }
 
     

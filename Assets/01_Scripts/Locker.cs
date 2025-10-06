@@ -13,11 +13,19 @@ public class Locker : MonoBehaviour
 
     public GameObject idkBro;
 
+    private AudioManager audioManager;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
     private void Update()
     {
 
         if (playerNearby && !doorOpened && Input.GetKeyDown(KeyCode.E))
         {
+            audioManager.PlaySFX(audioManager.locker);
             doorOpened = true;
             lockerAnim.SetTrigger("Opening");
             open.SetActive(false);

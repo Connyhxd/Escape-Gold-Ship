@@ -22,10 +22,16 @@ public class PlayerMovement : MonoBehaviour
     public float timeForCharge;
     public float timeSinceSprint;
 
+    private AudioManager audioManager;
+
     private void Awake()
     {
         cam = GetComponentInChildren<Camera>().transform;
         rb = GetComponent<Rigidbody>();
+
+        Cursor.lockState = CursorLockMode.Locked;
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+
     }
 
     private void Update()

@@ -24,6 +24,14 @@ public class Keypad : MonoBehaviour
 
     public bool doorOpened = false;
 
+    private AudioManager audioManager;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
+
     private void Update()
     {
 
@@ -36,6 +44,9 @@ public class Keypad : MonoBehaviour
 
         if (rightAnswer)
         {
+            audioManager.PlaySFX(audioManager.right);
+            audioManager.PlaySFX(audioManager.openDoor);
+
             doorAgain.SetTrigger("Opening");
             locker.SetActive(false);
             kp.openText.SetActive(false);
@@ -68,6 +79,7 @@ public class Keypad : MonoBehaviour
         {
             return;
         }
+        audioManager.PlaySFX(audioManager.click);
         text.text += number.ToString();
     }
 
@@ -79,6 +91,7 @@ public class Keypad : MonoBehaviour
         }
         else
         {
+            audioManager.PlaySFX(audioManager.wrong);
             text.color = Color.red;
             wrongEndTime = Time.unscaledTime + 2f;
         }
