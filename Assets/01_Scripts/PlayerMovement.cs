@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
         Movement();
         Camera();
         Stamina();
+        Footsteps();
 
     }
 
@@ -64,6 +65,35 @@ public class PlayerMovement : MonoBehaviour
         transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, horizontalRotation, transform.localEulerAngles.z);
         cam.transform.localEulerAngles = new Vector3(verticalRotation, cam.localEulerAngles.y, cam.localEulerAngles.z);
     }
+
+    void Footsteps()
+    {
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        {
+            
+            if (Input.GetKey(KeyCode.LeftShift) && stamina > 0f)
+            {
+                audioManager.footstep.clip = audioManager.run;
+            }
+            else
+            {
+                audioManager.footstep.clip = audioManager.walk;
+            }
+
+            if (!audioManager.footstep.isPlaying)
+            {
+                audioManager.footstep.Play();
+            }
+        }
+        else
+        {
+            if (audioManager.footstep.isPlaying)
+            {
+                audioManager.footstep.Stop();
+            }
+        }
+    }
+
     void Stamina()
     {
         if (Input.GetKey(KeyCode.LeftShift))

@@ -4,6 +4,7 @@ public class AudioManager : MonoBehaviour
 {
     public AudioSource music;
     public AudioSource sfx;
+    public AudioSource footstep;
 
     public AudioClip keys;
     public AudioClip openDoor;
@@ -37,6 +38,10 @@ public class AudioManager : MonoBehaviour
     }
     public void PlayChaseMusic()
     {
+        if (music.clip == chase && music.isPlaying)
+        {
+            return;
+        }
         music.clip = chase;
         music.loop = true;
         music.Play();
@@ -44,6 +49,11 @@ public class AudioManager : MonoBehaviour
 
     public void PlayNormalMusic()
     {
+        if (music.clip == bg && music.isPlaying)
+        {
+            return;
+        }
+
         music.clip = bg;
         music.loop = true;
         music.Play();

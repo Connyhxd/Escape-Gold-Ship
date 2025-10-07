@@ -8,6 +8,7 @@ public class EndingEvent : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Cursor.lockState = CursorLockMode.Locked;
             SceneManager.LoadScene("GoodEnd");
         }
     }

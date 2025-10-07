@@ -72,6 +72,7 @@ public class ItemManager : MonoBehaviour
                 {
                     if (iceNearby)
                     {
+                        Cursor.lockState = CursorLockMode.Locked;
                         audioManager.PlaySFX(audioManager.lighter);
                         SceneManager.LoadScene("BadEnd");
                     }

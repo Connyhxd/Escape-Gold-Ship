@@ -149,6 +149,12 @@ public class GoldShipAI : MonoBehaviour
 
     public void ChangeEnemyState(ENEMY_STATE newState)
     {
+
+        if (currentState == newState)
+        {
+            return;
+        }
+
         golshiAnim.SetBool("Idle", false);
         golshiAnim.SetBool("Walking", false);
         golshiAnim.SetBool("Chasing", false);
@@ -209,6 +215,7 @@ public class GoldShipAI : MonoBehaviour
                 agent.isStopped = true;
                 break;
             case ENEMY_STATE.Attack:
+                Cursor.lockState = CursorLockMode.None;
                 SceneManager.LoadScene("Escena Muerte");
                 break;
 

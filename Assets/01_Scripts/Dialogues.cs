@@ -22,8 +22,6 @@ public class Dialogues : MonoBehaviour
     void Update()
     {
 
-        Cursor.lockState = CursorLockMode.Locked;
-
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (text.text == lines[index])
@@ -62,14 +60,17 @@ public class Dialogues : MonoBehaviour
         }
         else if(currentScene == "Intro")
         {
+            Cursor.lockState = CursorLockMode.Locked;
             SceneManager.LoadScene("Main");
         }
         else if (currentScene == "BadEnd")
         {
+            Cursor.lockState = CursorLockMode.None;
             SceneManager.LoadScene("Menu_de_inicio");
         }
         else if (currentScene == "GoodEnd")
         {
+            Cursor.lockState = CursorLockMode.None;
             SceneManager.LoadScene("Menu_de_inicio");
         }
     }
